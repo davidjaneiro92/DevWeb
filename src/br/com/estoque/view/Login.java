@@ -5,11 +5,13 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -21,11 +23,12 @@ import br.com.estoque.model.EstoqueLogin;
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_login;
-	private JPasswordField txt_senha;
+	private JTextField txtLogin;
+	private JPasswordField txtSenha;
 	
-	private EstoqueLogin Estoque;
+	private EstoqueLogin estoque;
 	private EstoqueLoginDAO dao;
+	private Menu menu;
 
 	/**
 	 * Launch the application.
@@ -55,20 +58,48 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txt_login = new JTextField();
-		txt_login.setBorder(null);
-		txt_login.setBounds(123, 109, 125, 25);
-		contentPane.add(txt_login);
-		txt_login.setColumns(10);
+		txtLogin = new JTextField();
+		txtLogin.setBorder(null);
+		txtLogin.setBounds(123, 109, 125, 25);
+		contentPane.add(txtLogin);
+		txtLogin.setColumns(10);
 		
-		txt_senha = new JPasswordField();
-		txt_senha.setBorder(null);
-		txt_senha.setBounds(123, 156, 125, 20);
-		contentPane.add(txt_senha);
+		txtSenha = new JPasswordField();
+		txtSenha.setBorder(null);
+		txtSenha.setBounds(123, 156, 125, 20);
+		contentPane.add(txtSenha);
 		
 		JButton btn_login = new JButton("");
 		btn_login.addActionListener(new ActionListener() {
+			//logar
+			
 			public void actionPerformed(ActionEvent e) {
+			
+				try {
+					dao = new EstoqueLoginDAO();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+				try {
+					estoque = dao.consultarLogin(txtLogin.getText(), txtSenha.getText());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				//estoque.setLogin(txtLogin.getText());
+				//estoque.setSenha(txtSenha.getPassword().toString());
+				
+				
+				if(dao.confirma ==1) {
+					Menu tela = new Menu();
+					tela.setVisible(true);
+					setVisible(false);
+				} else {
+					JOptionPane.showMessageDialog(null, "Usuário ou Senha incorretos!");
+				}
+				
 			}
 		});
 		
