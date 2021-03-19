@@ -15,7 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import br.com.estoque.dao.EstoqueDAO;
+import br.com.estoque.dao.EstoqueLoginDAO;
 import br.com.estoque.model.EstoqueLogin;
 
 public class Login extends JFrame {
@@ -25,7 +25,7 @@ public class Login extends JFrame {
 	private JPasswordField txt_senha;
 	
 	private EstoqueLogin Estoque;
-	private EstoqueDAO dao;
+	private EstoqueLoginDAO dao;
 
 	/**
 	 * Launch the application.
