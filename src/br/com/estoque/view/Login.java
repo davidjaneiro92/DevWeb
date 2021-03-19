@@ -1,32 +1,31 @@
 package br.com.estoque.view;
 
-import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import javax.swing.ImageIcon;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+import br.com.estoque.dao.EstoqueDAO;
+import br.com.estoque.model.EstoqueLogin;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txt_email;
+	private JTextField txt_login;
 	private JPasswordField txt_senha;
+	
+	private EstoqueLogin Estoque;
+	private EstoqueDAO dao;
 
 	/**
 	 * Launch the application.
@@ -56,11 +55,11 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txt_email = new JTextField();
-		txt_email.setBorder(null);
-		txt_email.setBounds(123, 109, 125, 25);
-		contentPane.add(txt_email);
-		txt_email.setColumns(10);
+		txt_login = new JTextField();
+		txt_login.setBorder(null);
+		txt_login.setBounds(123, 109, 125, 25);
+		contentPane.add(txt_login);
+		txt_login.setColumns(10);
 		
 		txt_senha = new JPasswordField();
 		txt_senha.setBorder(null);
